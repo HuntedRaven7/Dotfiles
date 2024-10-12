@@ -29,7 +29,7 @@ static const char *colors[][3] = {
 static const char *const autostart[] = {
     "xset", "s", "off", NULL,
     "xset", "s", "noblank", NULL,
-    "xset", "-dpms", NULL,
+    "xset", "s", "off", "-dpms", NULL,
     "dbus-update-activation-environment", "--systemd", "--all", NULL,
     "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1", NULL,
     "flameshot", NULL,
