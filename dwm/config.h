@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 26;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -12,11 +12,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
-static const char normbordercolor[]           = "#3B4252";
-static const char normbgcolor[]               = "#2E3440";
+static const char normbordercolor[]           = "#d0e1cb";
+static const char normbgcolor[]               = "#0e0e0e";
 static const char normfgcolor[]               = "#D8DEE9";
-static const char selbordercolor[]            = "#434C5E";
-static const char selbgcolor[]                = "#434C5E";
+static const char selbordercolor[]            = "#1d1d1d";
+static const char selbgcolor[]                = "#1d1d1d";
 static const char selfgcolor[]                = "#ECEFF4";
 
 static const char *colors[][3] = {
@@ -27,12 +27,15 @@ static const char *colors[][3] = {
 };
 
 static const char *const autostart[] = {
+    "xset", "s", "off", NULL,
+    "xset", "s", "noblank", NULL,
+    "xset", "-dpms", NULL,
     "dbus-update-activation-environment", "--systemd", "--all", NULL,
     "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1", NULL,
     "flameshot", NULL,
     "dunst", NULL,
     "picom", "-b", NULL,
-    "sh", "-c", "feh --randomize --bg-fill ~/Pictures/backgrounds/*", NULL,
+    "sh", "-c", "feh --randomize --bg-fill ~/Pictures/.backgrounds/*", NULL,
     NULL /* terminate */
 };
 
