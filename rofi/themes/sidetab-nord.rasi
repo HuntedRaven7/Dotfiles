@@ -1,11 +1,11 @@
 * {
-    background: #1e222a;
-    foreground: #E5E9F0;
+    background: #181616;
+    foreground: #c5c9c5;
     border-color: @background;
-    bg-selected: #282c34;
-    grey: #565c64;
+    bg-selected: #87a987;
+    grey: #c5c9c5;
     spacing: 2;
-    width: 30em;
+    width: 15em;
     margin: 0;
     padding: 0;
 }
