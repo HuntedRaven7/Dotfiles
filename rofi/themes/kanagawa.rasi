@@ -4,7 +4,7 @@
  ********************************************************************************/
 
 * {
-  cBackground: #181616;
+  cBackground: #1A181616;
   cForeground: #c5c9c5;
   cBlack: #a6a69c;
   cBlue: #7fB4Ca;
@@ -28,7 +28,7 @@ window {
   width: 540;
   background-color: @cBackground;
   border: 1;
-  border-color: @cGreen;
+  border-color: @cBackground;
 }
 
 mainbox {
@@ -46,7 +46,7 @@ inputbar {
 
 prompt {
   background-color: transparent;
-  text-color: @cGreen;
+  text-color: @cWhite;
 }
 
 entry {
@@ -69,7 +69,7 @@ textbox-sep {
 message {
   margin: 0 0 1 0;
   border: 1;
-  border-color: @cGreen;
+  border-color: @cWhite;
 }
 
 message,
@@ -91,7 +91,7 @@ listview {
 scrollbar {
   background-color: transparent;
   handle-width: 2;
-  handle-color: @cGreen;
+  handle-color: @cBackground;
 }
 
 element {
@@ -113,6 +113,6 @@ element-text.normal {
 element.selected,
 element-icon.selected,
 element-text.selected {
-  background-color: @cGreen;
-  color: @cBackground;
+  background-color: @cBackground;
+  color: @cWhite;
 }

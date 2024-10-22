@@ -1,5 +1,5 @@
 * {
-    background: #181616;
+    background: #1A181616;
     foreground: #c5c9c5;
     border-color: @background;
     bg-selected: #87a987;

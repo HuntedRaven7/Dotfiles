@@ -163,8 +163,6 @@ screens = [
                     rounded=True,
                     this_current_screen_border='#ffffff',
                 ),
-                # widget.TextBox(fmt='', padding=6),
-                # widget.TextBox(fmt='', foreground='#3c3836', padding=6),
                 widget.TextBox(fmt = '|'),
                 widget.Clock(
                     fontsize=12,
@@ -177,58 +175,26 @@ screens = [
                     icon_size=12,
                     padding=8,
                 ),
-                widget.Spacer(length=4),
-                # widget.TextBox(fmt='', padding=6),
-                # widget.Bluetooth(
-                #     default_show_battery=True,
-                #     default_text='󰂯',
-                #     device_battery_format='({battery}%)',
-                #     device_format='{symbol}{name}{battery_level}',
-                #     symbol_connected='󰂯',
-                #     symbol_paired='',
-                #     symbol_powered=('',''),
-                # ),
-                # widget.TextBox(fmt='', padding=6),
-                # widget.PulseVolume(
-                #     emoji=True,
-                #     emoji_list=['󰸈','󰕿','󰖀','󰕾'],
-                #     fontsize=16,
-                # ),
-                # widget.PulseVolume(
-                #     scroll_fixed_width=True,
-                #     width=30,
-                # ),
-                # widget.TextBox(fmt='', padding=6),
-                # widget.TextBox(
-                #     fmt=' ',
-                #     fontsize=13,
-                # ),
-                # widget.Spacer(length=-4),
-                # widget.CPU(
-                #     format='{load_percent}%',
-                #     markup=True,
-                #     max_chars=5,
-                #     scroll_fixed_width=True,
-                #     update_interval=1.5,
-                #     width=45,
-                # ),
-                # widget.ThermalSensor(
-                #     format='{temp:.0f}{unit}',
-                #     scroll_fixed_width=True,
-                #     tag_sensor='CPUTIN',
-                #     width=40,
-                # ),
-                # widget.Spacer(length=7),
+                 widget.Spacer(length=7),
+                 widget.TextBox(fmt= 'CPU'),
+                 widget.CPU(
+                     format='{load_percent}%',
+                     markup=True,
+                     max_chars=5,
+                     scroll_fixed_width=True,
+                     update_interval=1.5,
+                     width=45),
+                 widget.TextBox(fmt= '|'),
             ],
             20,
-            background=["#12120f"],
+            background=["#1A131313"],
             # border_width=[0, 0, 1, 0],  # Draw top and bottom borders
             # border_color=["#2e383c", "#2e383c", "#2e383c", "#2e383c"]
         ),
-        wallpaper="~/.config/qtile/sunset_kanagawa-dragon.jpg",
+        #wallpaper="~/.config/qtile/sunset_kanagawa-dragon.jpg",
         # wallpaper="~/.config/qtile/mountain_kanagawa-dragon.jpg",
         # https://www.pexels.com/photo/full-moon-behind-mountains-1183021/
-        wallpaper_mode="fill",
+        #wallpaper_mode="fill",
     ),
 ]
             
@@ -260,6 +226,12 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
+
+# Autostart
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
