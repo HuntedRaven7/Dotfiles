@@ -6,7 +6,7 @@
 
 format="""
 $directory\
-([](bg:#303942 fg:#303942)$git_branch$git_status[](bg:none fg:#303942) )\
+([](bg:#131313 fg:#131313)$git_branch$git_status[](bg:none fg:#131313) )\
 $all"""
 add_newline = true
 
@@ -19,8 +19,8 @@ ruby.disabled = true
 perl.disabled = true
 
 [conda]
-format = '[]($style)[$symbol$environment](bg:#303942 fg:green)[]($style)'
-style = "bg:none fg:#303942"
+format = '[]($style)[$symbol$environment](bg:#131313 fg:green)[]($style)'
+style = "bg:none fg:#131313"
 
 # Prompt symbols
 [character]
@@ -28,17 +28,17 @@ success_symbol = "[-](green bold)"
 error_symbol = "[-_-](red bold)"
 
 [directory]
-format = "[ $path](bg:#303942 fg:blue bold)[]($style) "
-style = "bg:none fg:#303942"
+format = "[ $path](bg:#131313 fg:blue )[]($style) "
+style = "bg:none fg:#131313"
 truncation_length = 2
 
 [git_branch]
-format = "[$symbol$branch(:$remote_branch)](bg:#303942 fg:purple bold)"
-style = "bg:#303942 fg:purple bold"
+format = "[$symbol$branch(:$remote_branch)](bg:#131313 fg:purple )"
+style = "bg:#131313 fg:purple "
 
 [git_status]
 format = "([ $all_status$ahead_behind]($style))"
-style = "bg:#303942 fg:cyan"
+style = "bg:#131313 fg:cyan"
 # conflicted = "="
 ahead =	"${count}⇡"
 behind = "${count}⇣"
@@ -49,22 +49,22 @@ modified = "${count}!"
 staged = "${count}+"
 
 [python]
-format='via []($style)[$symbol$pyenv_prefix($version)( \($virtualenv\))](bg:#303942 fg:yellow bold)[]($style) '
-style = "bg:none fg:#303942"
+format='via []($style)[$symbol$pyenv_prefix($version)( \($virtualenv\))](bg:#131313 fg:yellow bold)[]($style) '
+style = "bg:none fg:#131313"
 
 [nodejs]
-format='via []($style)[$symbol($version)](bg:#303942 fg:green bold)[]($style) '
-style = "bg:none fg:#303942"
+format='via []($style)[$symbol($version)](bg:#131313 fg:green )[]($style) '
+style = "bg:none fg:#131313"
 
 [lua]
-format='via []($style)[$symbol($version)](bg:#303942 fg:#f5eb94 bold)[]($style) '
-style = "bg:none fg:#303942"
+format='via []($style)[$symbol($version)](bg:#131313 fg:#E8E7E4 )[]($style) '
+style = "bg:none fg:#131313"
 
 [cmd_duration]
 min_time = 400
-format = "[]($style)[$duration](bg:#303942 fg:#fabdd4 bold)[ ]($style)"
-style = "bg:none fg:#303942"
+format = "[]($style)[$duration](bg:#131313 fg:#E8E7E4 )[ ]($style)"
+style = "bg:none fg:#131313"
 
 [sudo]
-disabled = false
+disabled = true 
 symbol = '👩‍💻 '
