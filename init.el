@@ -14,6 +14,29 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(use-package nerd-icons-completion
+  :if ek-use-nerd-fonts                   ;; Load the package only if the user has configured to use nerd fonts.
+  :ensure t                               ;; Ensure the package is installed.
+  :after (:all nerd-icons marginalia)     ;; Load after `nerd-icons' and `marginalia' to ensure proper integration.
+  :config
+  (nerd-icons-completion-mode)            ;; Activate nerd icons for completion interfaces.
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup)) ;; Setup icons in the marginalia mode for enhanced completion display.
+
+(add-hook 'after-init-hook
+    (lambda ()
+      (message "Emacs has fully loaded. This code runs after startup.")
+
+      ;; Insert a welcome message in the *scratch* buffer displaying loading time and activated packages.
+      (with-current-buffer (get-buffer-create "*scratch*")
+        (insert (format
+                 ";;    Welcome to Emacs!
+;;
+;;    Loading time : %s
+;;    Packages     : %s
+"
+                  (emacs-init-time)
+                  (number-to-string (length package-activated-list)))))))
+
 (setq custom-file "~/.emacs.custom.el")
 
 (setq make-backup-files nil)
@@ -49,7 +72,7 @@
 
 (straight-use-package 'quickrun)
 (straight-use-package 'dashboard)
-(straight-use-package 'crux)
+;(straight-use-package 'crux)
 ;(straight-use-package 'kaolin-themes)
 ;(straight-use-package 'ample-theme)
 (straight-use-package 'el-patch)
