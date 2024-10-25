@@ -1,4 +1,3 @@
-
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -42,12 +41,10 @@
 
 (global-display-line-numbers-mode)
 
-;(load-theme 'wombat t)
-
-(use-package kaolin-themes
+(use-package doom-themes  
   :ensure t
   :preface (defvar region-fg nil) ; this prevents a weird bug with doom themes
-  :init (load-theme 'kaolin-temple t))
+  :init (load-theme 'doom-1337 t))
 
 (setq read-process-output-max (* 1024 1024 4))
 
@@ -57,11 +54,15 @@
   (setq gc-cons-threshold 800000))
 (setq process-adaptive-read-buffering nil)
 
-
 (defcustom ek-use-nerd-fonts t
   "Configuration for using Nerd Fonts Symbols."
   :type 'boolean
 :group 'appearance)
+
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
 
 (straight-use-package 'quickrun)
 (straight-use-package 'dashboard)
@@ -90,13 +91,19 @@
 ;(straight-use-package 'lsp-ui)
 (straight-use-package 'goto-line-preview)
 (straight-use-package 'god-mode)
+(straight-use-package 'restart-emacs)
+(straight-use-package 'centaur-tabs)
 
-(require 'whitespace)
+(require 'centaur-tabs)
+(centaur-tabs-mode t)
+(global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
+(global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
 
 (require 'god-mode)
 (god-mode)
 
-(global-set-key (kbd "<escape>") #'god-local-mode)
+(define-key god-local-mode-map (kbd "i") #'god-local-mode)
+(global-set-key (kbd "<escape>") #'(lambda () (interactive) (god-local-mode 1)))
 
 (global-set-key [remap goto-line] 'goto-line-preview)
 
@@ -104,6 +111,14 @@
   (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
 
 (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+
+(global-set-key (kbd "C-x C-1") #'delete-other-windows)
+(global-set-key (kbd "C-x C-2") #'split-window-below)
+(global-set-key (kbd "C-x C-3") #'split-window-right)
+(global-set-key (kbd "C-x C-0") #'delete-window)
+
+(define-key god-local-mode-map (kbd "[") #'backward-paragraph)
+(define-key god-local-mode-map (kbd "]") #'forward-paragraph)
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
