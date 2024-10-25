@@ -31,6 +31,11 @@
 
 (setq custom-file "~/.emacs.custom.el")
 
+;; Disable backup files.
+(setf make-backup-files nil)
+;; Prompt to delete autosaves when killing buffers.
+(setf kill-buffer-delete-auto-save-files t)
+
 (setq make-backup-files nil)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
