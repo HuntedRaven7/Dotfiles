@@ -31,6 +31,7 @@
 
 (setq custom-file "~/.emacs.custom.el")
 
+(setq auto-save-delete-trailing-whitespace t)  ; automatically delete spaces at the end of the line when saving
 ;; Disable backup files.
 (setf make-backup-files nil)
 ;; Prompt to delete autosaves when killing buffers.
