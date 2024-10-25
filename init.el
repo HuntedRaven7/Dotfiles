@@ -1,3 +1,4 @@
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
@@ -13,14 +14,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-
-(use-package nerd-icons-completion
-  :if ek-use-nerd-fonts                   ;; Load the package only if the user has configured to use nerd fonts.
-  :ensure t                               ;; Ensure the package is installed.
-  :after (:all nerd-icons marginalia)     ;; Load after `nerd-icons' and `marginalia' to ensure proper integration.
-  :config
-  (nerd-icons-completion-mode)            ;; Activate nerd icons for completion interfaces.
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup)) ;; Setup icons in the marginalia mode for enhanced completion display.
 
 (add-hook 'after-init-hook
     (lambda ()
@@ -95,6 +88,22 @@
 (straight-use-package 'vertico-prescient)
 (straight-use-package 'doom-modeline)
 ;(straight-use-package 'lsp-ui)
+(straight-use-package 'goto-line-preview)
+(straight-use-package 'god-mode)
+
+(require 'whitespace)
+
+(require 'god-mode)
+(god-mode)
+
+(global-set-key (kbd "<escape>") #'god-local-mode)
+
+(global-set-key [remap goto-line] 'goto-line-preview)
+
+(defun my-god-mode-update-cursor-type ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
+
+(add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
