@@ -73,8 +73,6 @@
 (straight-use-package 'quickrun)
 (straight-use-package 'dashboard)
 ;(straight-use-package 'crux)
-;(straight-use-package 'kaolin-themes)
-;(straight-use-package 'ample-theme)
 (straight-use-package 'el-patch)
 (straight-use-package 'use-package)
 (straight-use-package 'corfu)
@@ -99,6 +97,10 @@
 (straight-use-package 'god-mode)
 (straight-use-package 'restart-emacs)
 (straight-use-package 'centaur-tabs)
+
+(global-set-key (kbd "C-:") 'avy-goto-char)
+
+(setq indent-tabs-mode nil)
 
 (require 'centaur-tabs)
 (centaur-tabs-mode t)

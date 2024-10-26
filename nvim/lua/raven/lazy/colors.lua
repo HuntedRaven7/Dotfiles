@@ -13,6 +13,13 @@ return {
     },
 
     {
+  "2giosangmitom/nightfall.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  },
+
+    {
         "vague2k/vague.nvim",
         config = function()
             require("vague").setup({
