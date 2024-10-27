@@ -31,6 +31,15 @@
 
 (setq custom-file "~/.emacs.custom.el")
 
+(tool-bar-mode -1)          ; Disable the toolbar
+(tooltip-mode -1)           ; Disable tooltips
+(set-fringe-mode 10)        ; Give some breathing room
+(menu-bar-mode -1)            ; Disable the menu bar
+
+(set-frame-parameter nil 'alpha-background 20)
+
+(add-to-list 'default-frame-alist '(alpha-background . 20))
+
 (setq auto-save-delete-trailing-whitespace t)  ; automatically delete spaces at the end of the line when saving
 ;; Disable backup files.
 (setf make-backup-files nil)
@@ -50,7 +59,7 @@
 (use-package doom-themes  
   :ensure t
   :preface (defvar region-fg nil) ; this prevents a weird bug with doom themes
-  :init (load-theme 'doom-1337 t))
+  :init (load-theme 'doom-sourcerer t))
 
 (setq read-process-output-max (* 1024 1024 4))
 
@@ -260,8 +269,19 @@
 ;(require 'powerline)
 ;(powerline-vim-theme)
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
+(use-package dashboard
+  :preface
+  (defun my/dashboard-banner ()
+    "Set a dashboard banner including information on package initialization
+  time and garbage collections."""
+    (setq dashboard-banner-logo-title
+          (format "Emacs ready in %.2f seconds with %d garbage collections."
+                  (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
+  :config
+  (setq dashboard-startup-banner 'logo)
+  (dashboard-setup-startup-hook)
+  :hook ((after-init     . dashboard-refresh-buffer)
+         (dashboard-mode . my/dashboard-banner)))
 
 (use-package dired-x)
 
