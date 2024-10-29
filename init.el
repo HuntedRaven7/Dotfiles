@@ -31,6 +31,8 @@
 
 (setq custom-file "~/.emacs.custom.el")
 
+(set-frame-font "Fira Code 13" nil t)
+
 (tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
@@ -39,6 +41,7 @@
 (set-frame-parameter nil 'alpha-background 20)
 
 (add-to-list 'default-frame-alist '(alpha-background . 20))
+
 
 (setq auto-save-delete-trailing-whitespace t)  ; automatically delete spaces at the end of the line when saving
 ;; Disable backup files.
@@ -49,6 +52,8 @@
 (setq make-backup-files nil)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(global-set-key (kbd "C-.") #'other-window)
 
 (scroll-bar-mode 0)
      ;; Use `display-line-number-mode` as linum-mode's backend for smooth performance
