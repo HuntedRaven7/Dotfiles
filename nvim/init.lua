@@ -21,124 +21,13 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-function ColorMyPencils(color)
-	color = color or "nordic"
-	vim.cmd.colorscheme(color)
-
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-end
-
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
 
-		{ "ckipp01/stylua-nvim" },
-
-		{ "sidebar-nvim/sidebar.nvim" },
-
-		{ "mfussenegger/nvim-dap" },
-
-        { 'AlexvZyl/nordic.nvim',
-            lazy = false,
-            opts = {},
-            config = function()
-                ColorMyPencils()
-            end
-
-        },
-
-		{ "lommix/godot.nvim" },
-
-		{
-			"ravibrock/spellwarn.nvim",
-			event = "VeryLazy",
-			config = true,
-		},
-
-		{
-			"nvim-lualine/lualine.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-		},
-
-        {
-        "erikbackman/brightburn.vim",
-    },
-
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            ColorMyPencils()
-        end
-    },
-    {
-        "ellisonleao/gruvbox.nvim",
-        name = "gruvbox",
-        config = function()
-            require("gruvbox").setup({
-                terminal_colors = true, -- add neovim terminal colors
-                undercurl = true,
-                underline = false,
-                bold = true,
-                italic = {
-                    strings = false,
-                    emphasis = false,
-                    comments = false,
-                    operators = false,
-                    folds = false,
-                },
-                strikethrough = true,
-                invert_selection = false,
-                invert_signs = false,
-                invert_tabline = false,
-                invert_intend_guides = false,
-                inverse = true, -- invert background for search, diffs, statuslines and errors
-                contrast = "", -- can be "hard", "soft" or empty string
-                palette_overrides = {},
-                overrides = {},
-                dim_inactive = false,
-                transparent_mode = false,
-            })
-        end,
-    },
-    {
-        "folke/tokyonight.nvim",
-        config = function()
-            require("tokyonight").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-                transparent = true, -- Enable this to disable setting the background color
-                terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", -- style for sidebars, see below
-                    floats = "dark", -- style for floating windows
-                },
-            })
-        end
-    },
-
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                disable_background = true,
-                styles = {
-                    italic = false,
-                },
-            })
-
-            ColorMyPencils();
-        end
-    },
+        { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+        
+        { "sidebar-nvim/sidebar.nvim", },
 
 		{
 			"yorickpeterse/nvim-window",
@@ -763,7 +652,6 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
---vim.cmd("colorscheme vscode")
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -788,7 +676,7 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 vim.opt.nu = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -820,8 +708,8 @@ require("sidebar-nvim").setup({
 	bindings = nil,
 	open = true,
 	side = "left",
-	initial_width = 17,
-	hide_statusline = false,
+	initial_width = 15,
+	hide_statusline = true,
 	update_interval = 1000,
 	sections = { "datetime", "git", "diagnostics" },
 	section_separator = { "", "-----", "" },
@@ -831,48 +719,8 @@ require("sidebar-nvim").setup({
 		show_all = true,
 		interval = 5000,
 	},
-	datetime = { format = "%a %b %d, %H:%M", clocks = { { name = "local" } } },
+	datetime = { format = "%a %b %d, %H:%M", icon = "", clocks = { { name = "local" } } },
 	todos = { ignored_paths = { "~" } },
 })
 
-require("lualine").setup({
-	options = {
-		icons_enabled = true,
-		theme = "modus-vivendi",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = {
-			statusline = {},
-			winbar = {},
-		},
-		ignore_focus = {},
-		always_divide_middle = true,
-		always_show_tabline = true,
-		globalstatus = false,
-		refresh = {
-			statusline = 100,
-			tabline = 100,
-			winbar = 100,
-		},
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_y = { "progress" },
-		lualine_z = { "location" },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {},
-	winbar = {},
-	inactive_winbar = {},
-	extensions = {},
-})
+vim.cmd.colorscheme("habamax")
