@@ -1,1 +1,1 @@
-Based Neovim and Arch user
+Based Emacs and OpenSuse user
