@@ -49,7 +49,7 @@ $menu = wofi --show run
 # exec-once = nm-applet &
  exec-once = waybar 
  exec-once = hyprpaper
- exec-once = /usr/libexec/polkit-gnome-authentication-agent-1
+
 
 #############################
 ### ENVIRONMENT VARIABLES ###
@@ -183,7 +183,7 @@ input {
     kb_options =
     kb_rules =
 
-    follow_mouse = 0
+    follow_mouse = 1
 
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
 
