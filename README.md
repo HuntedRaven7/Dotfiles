@@ -1,1 +1,1 @@
-Based Emacs and PopOS user
+Based Neovim and PopOS user
