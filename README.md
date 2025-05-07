@@ -1,1 +1,1 @@
-Based Neovim and NixOS user
+Based Neovim and Fedora linux user
