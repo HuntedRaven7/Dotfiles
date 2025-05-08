@@ -1,1 +1,1 @@
-Based Neovim and Arch Linux user
+Based Neovim and NixOS user
