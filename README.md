@@ -1,1 +1,1 @@
-Based Neovim and Ultramarine-Linux user
+Based Neovim and Arch Linux user
