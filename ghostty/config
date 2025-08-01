@@ -1,0 +1,54 @@
+# vi: ft=mconf
+
+# ┌───────────┐
+# │ GUI STUFF │
+# └───────────┘
+
+window-decoration = true
+resize-overlay = never
+confirm-close-surface = false
+gtk-single-instance = true
+
+# ┌──────┐
+# │ FONT │
+# └──────┘
+
+font-family = "Cascadia Code"
+font-family = "Twemoji"
+font-size = 14
+
+# ┌────────────────────┐
+# │ THEME & APPEARANCE │
+# └────────────────────┘
+
+theme = "Adwaita Dark"
+background-opacity = 0.95
+background-blur-radius = 20
+
+# ┌──────────┐
+# │ KEYBINDS │
+# └──────────┘
+
+keybind = "ctrl+alt+r=reload_config"
+
+keybind = "ctrl+alt+h=new_split:left"
+keybind = "ctrl+alt+j=new_split:down"
+keybind = "ctrl+alt+k=new_split:up"
+keybind = "ctrl+alt+l=new_split:right"
+
+keybind = "alt+h=goto_split:left"
+keybind = "alt+j=goto_split:bottom"
+keybind = "alt+k=goto_split:top"
+keybind = "alt+l=goto_split:right"
+
+keybind = "ctrl+shift+alt+h=resize_split:left,10"
+keybind = "ctrl+shift+alt+j=resize_split:down,10"
+keybind = "ctrl+shift+alt+k=resize_split:up,10"
+keybind = "ctrl+shift+alt+l=resize_split:right,10"
+
+keybind = "ctrl+alt+q=close_surface"
+
+keybind = "ctrl+alt+t=new_tab"
+
+keybind = "alt+n=next_tab"
+keybind = "alt+shift+n=previous_tab"
