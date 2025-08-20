@@ -1,0 +1,40 @@
+diff --git a/x.c b/x.c
+index bd23686..254d3d0 100644
+--- a/x.c
++++ b/x.c
+@@ -580,11 +580,33 @@ selnotify(XEvent *e)
+ 		 * copy and pasting. When receiving some selection data,
+ 		 * replace all '\n' with '\r'.
+ 		 * FIXME: Fix the computer world.
++		 *
++		 * Also, replace most C0 control codes with spaces, except for
++		 * HT and CR. Note that we are not replacing C1 control codes
++		 * (0x80 to 0x9F), as these are possibly valid UTF-8
++		 * continuation bytes.
+ 		 */
+ 		repl = data;
+ 		last = data + nitems * format / 8;
+-		while ((repl = memchr(repl, '\n', last - repl))) {
+-			*repl++ = '\r';
++		while (repl != last) {
++			if (*repl <= 0x1f) {
++				switch (*repl) {
++				case 0x09: /* HT \t */
++				case 0x0D: /* CR \r */
++					repl++;
++					break;
++				case 0x0a: /* LF \n */
++					*repl++ = '\r';
++					break;
++				default:
++					*repl++ = ' ';
++					break;
++				};
++			} else if (*repl == 0x7f) { /* DEL */
++				*repl++ = ' ';
++			} else {
++				repl++;
++			}
+ 		}
+ 
+ 		if (IS_SET(MODE_BRCKTPASTE) && ofs == 0)
