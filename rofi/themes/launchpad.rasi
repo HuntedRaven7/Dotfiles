@@ -2,7 +2,7 @@ configuration {
 	modi:				"drun";
 	font:				"Product Sans 10";
 	show-icons:                     true;
-	icon-theme: 			"Reversal-dark";
+	icon-theme: 			"Papirus-Dark";
 	display-drun: 			"";
 	drun-display-format:            "{name}";
 	sidebar-mode: 			false;
@@ -12,9 +12,9 @@ configuration {
 
 * {
 	bg:				#0E0E0E;
-	fg:				#ffffff;
+	fg:				#a5b6cf;
 	accent:				#0E0E0E;
-	button:				#11131c;
+	button:				#0E0E0E;
 
 	background-color:		@bg;
 	text-color:			@fg;
@@ -89,4 +89,4 @@ element-text, element-icon {
 element selected {
     	background-color:               @button;
     	border-radius:                  6px;
-} 
+}
