@@ -14,14 +14,14 @@ configuration {
 	bg:				#0E0E0E;
 	fg:				#ffffff;
 	accent:				#0E0E0E;
-	button:				#11131c;
+	button:				#1E1E1E;
 
 	background-color:		@bg;
 	text-color:			@fg;
 }
 
 window {
-	border-radius:                  7px;
+	border-radius:                  0px;
 	width:			    	37%;
 	padding: 			5px;
 }
@@ -89,4 +89,4 @@ element-text, element-icon {
 element selected {
     	background-color:               @button;
     	border-radius:                  6px;
-} 
+}
