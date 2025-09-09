@@ -1,0 +1,30 @@
+;; ----------------------------
+;; -- Widgets config for EWW --
+;; -- Created by : 𝜌𝜍𝜏𝛾𝛼𝛿𝜀   --
+;; ----------------------------
+
+(deflisten selected-ws :initial "1"
+  "socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock STDOUT | stdbuf -oL grep '^workspace>>' | stdbuf -oL cut -d'>' -f3")
+(defvar workspace-numbers '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]')
+
+(defwidget workspaces []
+    (box :style "background: #282828; border-radius: 999px; padding: 10px;"
+        (for num in workspace-numbers
+            (eventbox
+                :onclick "hyprctl dispatch workspace ${num}"
+                :cursor "pointer"
+                (label :text " " :unindent true :show-truncated false
+                    :style {selected-ws == num ? "color: #98971a; padding: 5px;" : "color: #f1f1f1"}
+                )
+            )
+        )
+    )
+)
+
+(defwindow workspaces []
+    :stacking "overlay"
+    :exclusive "false"
+    :monitor 1
+    :geometry (geometry :y 5 :x 5 :anchor "bottom center")
+    (workspaces)
+)

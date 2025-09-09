@@ -1,0 +1,278 @@
+(defwindow drawer
+  :exclusive true
+  :monitor 0
+  :stacking "bg"
+  :geometry (geometry
+    :anchor "center right"
+    :height "100%"
+    :width "500px"
+  )
+  (container_border)
+)
+
+(defwidget container_border []
+  (box
+    :class "container-border"
+    (container)
+  )
+)
+
+(defwidget container []
+  (box
+    :class "container"
+    :space-evenly false
+    :orientation "vertical"
+    (top)
+    (bottom)
+  )
+)
+
+(defwidget top []
+  (box
+    :orientation "vertical"
+    :space-evenly false
+    :vexpand true
+    (battery)
+    (clock)
+  )
+)
+
+(defpoll battery_meter
+  :interval "1s"
+  `$HOME/.local/bin/battery_meter`
+)
+
+(defwidget battery []
+  (label
+    :halign 'start'
+    :style "color: #80eec0;"
+    :text battery_meter
+  )
+)
+
+(defpoll time
+  :interval "1s"
+  `date +%H:%M`
+)
+
+(defpoll date
+  :interval "1s"
+  `date +"%A, %d %B %Y"`
+)
+
+(defwidget clock []
+  (box
+    :halign "end"
+    :orientation "vertical"
+    :space-evenly false
+    :valign "top"
+    :class "clock"
+    (label
+      :halign "end"
+      :style "font-size: 120px;"
+      :text time
+    )
+    (label
+      :halign "end"
+      :style "font-size: 28px; margin-top: -9px;"
+      :text date
+    )
+  )
+)
+
+(defwidget bottom []
+  (box
+    :orientation "vertical"
+    :space-evenly false
+    :spacing 16
+    (network_menu)
+    (sound_menu)
+    (powermenu)
+  )
+)
+
+(defwidget network_menu []
+  (box
+    :spacing 16
+    (box
+      :spacing 16
+      (bluetooth)
+      (wifi)
+    )
+    (brightness_scale)
+  )
+)
+
+(defwidget bluetooth []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :class "btn"
+      :height 75
+      :onclick "hyprctl dispatch exec 'kitty -e bluetui'"
+      (image :path "./assets/bluetooth.svg")
+    )
+  )
+)
+
+(defwidget wifi []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :class "btn"
+      :onclick "hyprctl dispatch exec 'kitty -e nmtui'"
+      :height 75
+      (image :path "./assets/wifi.svg")
+    )
+  )
+)
+
+(defpoll brightness
+  :interval "1s"
+  `brightnessctl | awk -F '[()]' '/Current brightness/ {print $2}' | sed 's/%//'`
+)
+
+(defwidget brightness_scale []
+    (box
+    :hexpand true
+    :space-evenly false
+    (image
+      :path "./assets/brightness.svg"
+      :style "padding: 10px;"
+    )
+    (scale
+      :class "scale"
+      :hexpand true
+      :min 1
+      :max 100
+      :onchange `brightnessctl s {}%`
+      :value brightness
+    )
+  )
+)
+
+(defwidget sound_menu []
+  (box
+    :spacing 16
+    (box
+      :spacing 16
+      (sound_input)
+      (sound_output)
+    )
+    (volume_scale)
+  )
+)
+
+(defwidget sound_input []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :class "btn"
+      :height 75
+      :onclick "hyprctl dispatch exec 'kitty -e wiremix --tab input'"
+      (image :path "./assets/mic.svg")
+    )
+  )
+)
+
+(defwidget sound_output []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :class "btn"
+      :height 75
+      :onclick "hyprctl dispatch exec 'kitty -e wiremix --tab output'"
+      (image :path "./assets/speaker.svg")
+    )
+  )
+)
+
+(defpoll volume
+  :interval "1s"
+  `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f", $2 * 100}'`
+)
+
+(defpoll volume_image_path
+  :interval "1s"
+  `wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED' && echo "./assets/volume-mute.svg" || echo "./assets/volume.svg"`
+)
+
+(defwidget volume_scale []
+  (box
+    :space-evenly false
+    (eventbox
+      :cursor "pointer"
+      (button
+        :class "btn"
+        :onclick `wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle`
+        (image :path volume_image_path)
+      )
+    )
+    (scale
+      :class "scale"
+      :hexpand true
+      :min 0
+      :max 100
+      :onchange `wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ {}%`
+      :value volume
+    )
+  )
+)
+
+(defwidget powermenu []
+  (box
+    :spacing 16
+    (exit)
+    (reboot)
+    (poweroff)
+    (close)
+  )
+)
+
+(defwidget exit []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :onclick "hyprctl dispatch exit"
+      :class "btn"
+      :height 75
+      (image :path "./assets/exit.svg")
+    )
+  )
+)
+
+(defwidget reboot []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :onclick "reboot"
+      :class "btn"
+      :height 75
+      (image :path "./assets/reboot.svg")
+    )
+  )
+)
+
+(defwidget poweroff []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :onclick "poweroff"
+      :class "btn"
+      :height 75
+      (image :path "./assets/poweroff.svg")
+    )
+  )
+)
+
+(defwidget close []
+  (eventbox
+    :cursor "pointer"
+    (button
+      :onclick "eww close drawer"
+      :class "btn"
+      :height 75
+      (image :path "./assets/close.svg")
+    )
+  )
+)
