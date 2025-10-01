@@ -1,0 +1,124 @@
+{
+  "$schema": "/home/<username>/.config/fastfetch/json_schema.json",
+  "logo": {
+    "source": "/home/edward/.config/fastfetch/cat1.png",
+    "type": "auto",
+    "height": 17,
+ //   "width": 38,
+    "padding": {
+      "top": 2,
+      "left": 2,
+      "right": 3,
+    }
+  },
+    "display": {
+        "separator": "󰍴󰥭 ",
+        "color": {
+            "separator": "32"
+        },
+        "constants": [
+            "\u001b[34m───────────────────────────────────────────────────────",
+            "\u001b[34m│\u001b[55C│\u001b[55D"
+        ]
+    },
+    "modules": [
+        "break",
+        {
+            "format": "\u001b[37m{#34}{#keys}\u001b[34m╭{$1}╮\u001b[53D \u001b[4;34m\u001b[1mOperating System\u001b[0;90m\u001b[22m ",
+            "type": "title"
+        },
+        {
+            "key": "{$2}{#33}󰍳  {#37}Distro{#32} 󰍴󰍴󰍴󰍴",
+            "type": "os",
+            "format": "{pretty-name}"
+        },
+        {
+            "key": "{$2}{#33}  {#37}Kernel{#32} 󰍴󰍴󰍴󰍴",
+            "type": "kernel"
+        },
+        {
+            "key": "{$2}{#33}  {#37}Shell{#32} 󰍴󰍴󰍴󰍴󰍴",
+            "type": "shell"
+        },
+        {
+            "key": "{$2}{#33}󰛖  {#37}Font{#32} 󰍴󰍴󰍴󰍴󰍴󰍴",
+            "type": "font",
+            "format": "{3}",
+        },
+        {
+            "format": "\u001b[34m{#1}{#keys}\u001b[34m╰{$1}╯",
+            "type": "custom"
+        },
+        "break",
+        {
+            "format": "\u001b[34m{#34}{#keys}\u001b[34m╭{$1}╮\u001b[53D \u001b[4;34m\u001b[1mBuild Specs\u001b[0;90m\u001b[22m ",
+            "type": "title"
+        },
+        {
+            "key": "{$2}{#33}  {#37}Board{#32} 󰍴󰍴󰍴󰍴󰍴",
+            "type": "board",
+            "format": "{name}",
+        },
+        {
+            "key": "{$2}{#33}󰻠  {#37}CPU{#32} 󰍴󰍴󰍴󰍴󰍴󰍴󰍴",
+            "type": "cpu",
+            "showPeCoreCount": true,
+      "cpuFormat": {
+            "description": "Output format of the module `CPU`. See Wiki for formatting syntax\n    1. {name}: Name\n    2. {vendor}: Vendor\n    3. {cores-physical}: Physical core count\n    4. {cores-logical}: Logical core count\n    5. {cores-online}: Online core count\n    6. {freq-base}: Base frequency (formatted)\n    7. {freq-max}: Max frequency (formatted)\n    8. {temperature}: Temperature (formatted)\n    9. {core-types}: Logical core count grouped by frequency\n    10. {packages}: Processor package count",
+            "type": "string"
+        },
+        },
+        {
+            "key": "{$2}{#33}󰍛  {#37}GPU{#32} 󰍴󰍴󰍴󰍴󰍴󰍴󰍴",
+            "type": "gpu",
+            "hideType": "integrated",
+            "format": "{name}"
+        },
+        {
+            "key": "{$2}{#33}  {#37}Memory{#32} 󰍴󰍴󰍴󰍴",
+            "type": "memory",
+                        "format": "{total}",
+        },
+        {
+            "format": "\u001b[34m{#1}{#keys}\u001b[34m╰{$1}╯",
+            "type": "custom"
+        },
+                "break",
+        {
+            "format": "\u001b[34m{#34}{#keys}\u001b[34m╭{$1}╮\u001b[53D \u001b[4;34m\u001b[1mMe challenges\u001b[0;90m\u001b[22m ",
+            "type": "title"
+        },
+        {
+            "key": "{$2}{#33}  {#37}No hopping{#32} ",
+            "type": "command",
+            "text": "echo $(/home/edward/.local/bin/progress.sh) days done",
+        },
+        {
+            "key": "{$2}{#33}󰁫  {#37}Days left{#32} 󰍴",
+            "type": "command",
+            "text": "/home/edward/.local/bin/difference.sh",
+        },
+        {
+            "key": "{$2}{#33}󰅐  {#37}Uptime{#32} 󰍴󰍴󰍴󰍴",
+            "type": "uptime"
+        },
+        {
+            "key": "{$2}{#33}󰧨  {#37}No Changing WM{#32} 󰍴",
+            "type": "command",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$(((time_progression / 86400))); echo $days_difference days of 2 years"
+        },
+        {
+            "key": "{$2}{#33}󰁫  {#37}Days left{#32} 󰍴",
+            "type": "command",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$(((time_progression / 86400))); remaining_days=$((730 - days_difference)); echo $remaining_days days"
+        },
+        {
+            "key": "{$2}{#33}  {#37}Current WM{#32} ",
+            "type": "wm"
+        },
+        {
+            "format": "\u001b[34m{#1}{#keys}\u001b[34m╰{$1}╯",
+            "type": "custom"
+        }
+    ]
+}
