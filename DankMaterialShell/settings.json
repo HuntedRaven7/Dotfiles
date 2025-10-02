@@ -1,17 +1,17 @@
 {
-  "currentThemeName": "dynamic",
+  "currentThemeName": "monochrome",
   "customThemeFile": "",
-  "matugenScheme": "scheme-tonal-spot",
-  "dankBarTransparency": 0.9,
+  "matugenScheme": "scheme-fruit-salad",
+  "dankBarTransparency": 1,
   "dankBarWidgetTransparency": 1,
-  "popupTransparency": 0.9,
+  "popupTransparency": 1,
   "dockTransparency": 1,
   "use24HourClock": false,
   "useFahrenheit": false,
   "nightModeEnabled": false,
   "weatherLocation": "New York, NY",
   "weatherCoordinates": "40.7128,-74.0060",
-  "useAutoLocation": false,
+  "useAutoLocation": true,
   "weatherEnabled": true,
   "showLauncherButton": true,
   "showWorkspaceSwitcher": true,
@@ -90,40 +90,32 @@
   "lockDateFormat": "",
   "mediaSize": 1,
   "dankBarLeftWidgets": [
-    "launcherButton",
-    "workspaceSwitcher",
     {
-      "id": "notepadButton",
+      "id": "launcherButton",
       "enabled": true
     },
     {
-      "id": "colorPicker",
-      "enabled": true
-    },
-    {
-      "id": "systemUpdate",
+      "id": "workspaceSwitcher",
       "enabled": true
     }
   ],
   "dankBarCenterWidgets": [
-    "music",
+    {
+      "id": "systemUpdate",
+      "enabled": true
+    },
     {
       "id": "clock",
       "enabled": true
     },
-    "weather"
+    {
+      "id": "music",
+      "enabled": true
+    }
   ],
   "dankBarRightWidgets": [
     {
       "id": "systemTray",
-      "enabled": true
-    },
-    {
-      "id": "clipboard",
-      "enabled": true
-    },
-    {
-      "id": "diskUsage",
       "enabled": true
     },
     {
@@ -135,11 +127,13 @@
       "enabled": true
     },
     {
-      "id": "notificationButton",
-      "enabled": true
+      "id": "gpuTemp",
+      "enabled": true,
+      "selectedGpuIndex": 0,
+      "pciId": "10de:2489"
     },
     {
-      "id": "battery",
+      "id": "notificationButton",
       "enabled": true
     },
     {
@@ -172,20 +166,20 @@
   "dockGroupByApp": false,
   "dockOpenOnOverview": false,
   "dockPosition": 1,
-  "dockSpacing": 4,
-  "dockBottomGap": 0,
+  "dockSpacing": 5,
+  "dockBottomGap": -17,
   "cornerRadius": 16,
   "notificationOverlayEnabled": false,
   "dankBarAutoHide": false,
   "dankBarOpenOnOverview": true,
   "dankBarVisible": true,
-  "dankBarSpacing": 6,
+  "dankBarSpacing": 0,
   "dankBarBottomGap": 2,
-  "dankBarInnerPadding": 3,
-  "dankBarSquareCorners": false,
-  "dankBarNoBackground": false,
+  "dankBarInnerPadding": 2,
+  "dankBarSquareCorners": true,
+  "dankBarNoBackground": true,
   "dankBarGothCornersEnabled": false,
-  "dankBarPosition": 2,
+  "dankBarPosition": 3,
   "lockScreenShowPowerActions": true,
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sch",
