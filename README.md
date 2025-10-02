@@ -1,2 +1,2 @@
 ## Raven?'s Dotfiles
-This uses niri with the DMS shell
+WORK IN PROGRESS IGNIS SHELL HAPPENING LOL
