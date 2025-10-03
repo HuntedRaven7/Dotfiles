@@ -1,2 +1,3 @@
 ## Raven?'s Dotfiles
-WORK IN PROGRESS IGNIS SHELL HAPPENING LOL
+
+# Nothing Too Interesting On Here
