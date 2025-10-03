@@ -1,0 +1,23 @@
+/*
+* Variant: Rosé Pine Dawn
+* Maintainer: DankChoir
+*/
+
+@define-color base            #202020;
+@define-color surface         #fffaf3;
+@define-color overlay         #f2e9e1;
+
+@define-color muted           #9893a5;
+@define-color subtle          #4c4c4c;
+@define-color text            #dddddd;
+
+@define-color love            #b4637a;
+@define-color gold            #6495ed;
+@define-color rose            #dddddd;
+@define-color pine            #286983;
+@define-color foam            #56949f;
+@define-color iris            #907aa9;
+
+@define-color highlightLow    #f4ede8;
+@define-color highlightMed    #303030;
+@define-color highlightHigh   #cecacd;
